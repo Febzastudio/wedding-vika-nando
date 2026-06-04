@@ -1,4 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Wedding Of Vika & Nando</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- MUSIK -->
+
 <audio id="bgMusic" loop>
-  <source src="music/akad-payung-teduh.mp3" type="audio/mpeg">
+<source src="music/akad-payung-teduh.mp3" type="audio/mpeg">
 </audio>
 
+<!-- COVER -->
+
+<section class="cover" id="cover">
+
+<div class="cover-overlay">
+
+<div class="monogram">
+V & N
+</div>
+
+<h4>The Wedding Of</h4>
+
+<h1>Vika & Nando</h1>
+
+<p>Kamis, 11 Juni 2026</p>
+
+<div id="guestName" class="guest-name">
+Kepada Yth.
+</div>
+
+<button class="open-btn" onclick="openInvitation()">
+Buka Undangan
+</button>
+
+</div>
+
+</section>
+
+<!-- CONTENT -->
+
+<div id="content">
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="images/foto2.jpg.jpg" class="hero-img">
+
+<h2>The Wedding Of</h2>
+
+<h1>Vika & Nando</h1>
+
+<p>11 Juni 2026</p>
+
+</section>
+
+<!-- SALAM -->
+
+<section class="card">
+
+<h2>Assalamu'alaikum Wr. Wb</h2>
+
+<p>
+Dengan memohon rahmat dan ridho Allah SWT,
+kami mengundang Bapak/Ibu/Saudara/i
+untuk hadir dalam acara pernikahan kami.
+</p>
+
+</section>
+
+<!-- MEMPELAI -->
+
+<section class="card">
+
+<h2>Mempelai</h2>
+
+<img src="images/foto1.jpg.jpg" class="couple-photo">
+
+<div class="bride">
+
+<h3>ROVIKA D. ANGGUDA</h3>
+
+<p>(Vika)</p>
+
+<p>
+Putri Ke-3 dari
+</p>
+
+<p>
+Bapak Dahlan D. Angguda
+<br>
+&
+<br>
+Ibu Yanti R. Musa (Almarhumah)
+</p>
+
+</div>
+
+<div class="love-icon">
+❤
+</div>
+
+<div class="groom">
+
+<h3>MOH. LAPANANDO MASI</h3>
+
+<p>(Nando)</p>
+
+<p>
+Putra Ke-2 dari
+</p>
+
+<p>
+Bapak Ibrahim Masi
+<br>
+&
+<br>
+Ibu Suriyani Rahim
+</p>
+
+</div>
+
+</section>
+
+<!-- COUNTDOWN -->
+
+<section class="card">
+
+<h2>Menuju Hari Bahagia</h2>
+
+<div id="countdown">
+
+<div>
+<span id="days">0</span>
+<small>Hari</small>
+</div>
+
+<div>
+<span id="hours">0</span>
+<small>Jam</small>
+</div>
+
+<div>
+<span id="minutes">0</span>
+<small>Menit</small>
+</div>
+
+<div>
+<span id="seconds">0</span>
+<small>Detik</small>
+</div>
+
+</div>
+
+</section>
+
+<!-- AKAD -->
+
+<section class="card">
+
+<h2>Akad Nikah</h2>
+
+<h3>Kamis, 11 Juni 2026</h3>
+
+<p>14.00 WITA</p>
+
+<p>
+Dusun Pantai Bugis
+<br>
+Desa Tihengo
+<br>
+Kecamatan Ponelo Kepulauan
+</p>
+
+</section>
+
+<!-- RESEPSI -->
+
+<section class="card">
+
+<h2>Resepsi</h2>
+
+<h3>Kamis, 11 Juni 2026</h3>
+
+<p>19.00 WITA</p>
+
+<p>
+Dusun Pantai Bugis
+<br>
+Desa Tihengo
+<br>
+Kecamatan Ponelo Kepulauan
+</p>
+
+</section>
+
+<!-- MAPS -->
+
+<section class="card">
+
+<h2>Lokasi Acara</h2>
+
+<a
+class="btn"
+href="https://maps.app.goo.gl/ToMS7B41gFdCSC459"
+target="_blank">
+
+📍 Buka Google Maps
+
+</a>
+
+</section>
+
+<!-- GALERI -->
+
+<section class="card">
+
+<h2>Galeri</h2>
+
+<div class="gallery">
+
+<img src="images/foto1.jpg.jpg">
+
+<img src="images/foto2.jpg.jpg">
+
+<img src="images/foto3.jpg.jpeg">
+
+</div>
+
+</section>
+
+<!-- RSVP -->
+
+<section class="card">
+
+<h2>Konfirmasi Kehadiran</h2>
+
+<form id="rsvpForm">
+
+<input
+type="text"
+id="rsvpNama"
+placeholder="Nama Anda"
+required>
+
+<select id="rsvpStatus">
+
+<option value="Hadir">
+Hadir
+</option>
+
+<option value="Tidak Hadir">
+Tidak Hadir
+</option>
+
+</select>
+
+<button type="submit">
+Kirim RSVP
+</button>
+
+</form>
+
+<div id="rsvpMessage"></div>
+
+</section>
+
+<!-- UCAPAN -->
+
+<section class="card">
+
+<h2>Ucapan & Doa</h2>
+
+<form id="wishForm">
+
+<input
+type="text"
+id="wishName"
+placeholder="Nama Anda"
+required>
+
+<textarea
+id="wishMessage"
+placeholder="Tulis ucapan dan doa..."
+required>
+</textarea>
+
+<button type="submit">
+Kirim Ucapan
+</button>
+
+</form>
+
+<div id="wishList"></div>
+
+</section>
+
+<!-- TURUT MENGUNDANG -->
+
+<section class="card">
+
+<h2>Turut Mengundang</h2>
+
+<p>Keluarga Musa</p>
+<p>Keluarga Angguda</p>
+<p>Keluarga Masi</p>
+<p>Keluarga Rahim</p>
+
+</section>
+
+<!-- PENUTUP -->
+
+<section class="card">
+
+<img src="images/foto3.jpg.jpeg" class="closing-photo">
+
+<h2>Terima Kasih</h2>
+
+<p>
+Merupakan suatu kehormatan dan kebahagiaan
+bagi kami apabila Bapak/Ibu/Saudara/i
+berkenan hadir serta memberikan doa restu.
+</p>
+
+<h3>Vika & Nando</h3>
+
+<p>
+WhatsApp:
+0821-8709-1084
+</p>
+
+</section>
+
+</div>
+
+<!-- MENU -->
+
+<div class="floating-menu">
+
+<a href="#content">
+<i class="fa-solid fa-house"></i>
+</a>
+
+<a href="#countdown">
+<i class="fa-solid fa-clock"></i>
+</a>
+
+<a href="#wishForm">
+<i class="fa-solid fa-heart"></i>
+</a>
+
+<a href="https://maps.app.goo.gl/ToMS7B41gFdCSC459"
+target="_blank">
+
+<i class="fa-solid fa-location-dot"></i>
+
+</a>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
