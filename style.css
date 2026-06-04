@@ -1,1 +1,294 @@
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#fdf7f7;
+color:#4b1e2f;
+overflow-x:hidden;
+}
+
+/* COVER */
+
+.cover{
+height:100vh;
+background:
+linear-gradient(rgba(70,0,20,.55),
+rgba(70,0,20,.55)),
+url('images/foto2.jpg.jpg');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.cover-overlay{
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:25px;
+width:100%;
+max-width:420px;
+color:#fff;
+}
+
+.monogram{
+font-family:'Great Vibes',cursive;
+font-size:80px;
+margin-bottom:15px;
+color:#fff;
+}
+
+.cover h4{
+font-size:20px;
+margin-bottom:10px;
+}
+
+.cover h1{
+font-family:'Great Vibes',cursive;
+font-size:65px;
+font-weight:normal;
+margin-bottom:15px;
+}
+
+.cover p{
+margin-bottom:20px;
+}
+
+.guest-name{
+background:#fff;
+color:#6b0f2a;
+padding:10px;
+border-radius:12px;
+margin-bottom:20px;
+font-weight:600;
+}
+
+.open-btn{
+border:none;
+padding:15px 35px;
+border-radius:50px;
+background:#8b1538;
+color:#fff;
+font-size:16px;
+cursor:pointer;
+}
+
+/* CONTENT */
+
+#content{
+display:none;
+}
+
+.hero{
+text-align:center;
+padding:40px 20px;
+}
+
+.hero-img{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+border:8px solid #8b1538;
+margin-bottom:20px;
+}
+
+.hero h1{
+font-family:'Great Vibes',cursive;
+font-size:60px;
+color:#8b1538;
+}
+
+.hero h2{
+margin-bottom:10px;
+}
+
+.card{
+background:white;
+margin:20px;
+padding:30px;
+border-radius:25px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+text-align:center;
+}
+
+.card h2{
+color:#8b1538;
+margin-bottom:20px;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.couple-photo{
+width:100%;
+max-width:300px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.love-icon{
+font-size:40px;
+color:#8b1538;
+margin:25px 0;
+}
+
+/* COUNTDOWN */
+
+#countdown{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+#countdown div{
+background:#8b1538;
+color:white;
+padding:20px;
+border-radius:15px;
+min-width:80px;
+}
+
+#countdown span{
+display:block;
+font-size:28px;
+font-weight:bold;
+}
+
+#countdown small{
+font-size:12px;
+}
+
+/* BUTTON */
+
+.btn,
+button{
+background:#8b1538;
+color:white;
+border:none;
+padding:14px 25px;
+border-radius:30px;
+cursor:pointer;
+text-decoration:none;
+display:inline-block;
+margin-top:10px;
+}
+
+.btn:hover,
+button:hover{
+opacity:.9;
+}
+
+/* FORM */
+
+input,
+textarea,
+select{
+width:100%;
+padding:15px;
+margin:10px 0;
+border:1px solid #ddd;
+border-radius:12px;
+font-family:'Poppins',sans-serif;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:1fr;
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+border-radius:20px;
+}
+
+/* UCAPAN */
+
+#wishList{
+margin-top:20px;
+text-align:left;
+}
+
+.ucapan-item{
+background:#fff5f7;
+padding:15px;
+border-radius:15px;
+margin-bottom:10px;
+}
+
+/* FOTO PENUTUP */
+
+.closing-photo{
+width:100%;
+max-width:300px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+/* FLOATING MENU */
+
+.floating-menu{
+position:fixed;
+bottom:20px;
+right:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+z-index:999;
+}
+
+.floating-menu a{
+width:55px;
+height:55px;
+background:#8b1538;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+text-decoration:none;
+font-size:22px;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.cover h1{
+font-size:50px;
+}
+
+.monogram{
+font-size:65px;
+}
+
+.hero h1{
+font-size:45px;
+}
+
+.card{
+margin:15px;
+padding:20px;
+}
+
+}
