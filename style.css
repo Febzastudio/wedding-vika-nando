@@ -366,3 +366,29 @@ textarea{
         font-size: 18px;
     }
 }
+/* ==========================
+   NAMA TAMU
+========================== */
+
+.guest-label{
+    line-height:1.7;
+    color:#7a0f3b;
+}
+
+.guest-label strong{
+    display:block;
+    margin-top:5px;
+    margin-bottom:8px;
+    font-size:20px;
+    font-weight:700;
+    color:#8b1538;
+}
+
+.guest-note{
+    display:block;
+    margin-top:5px;
+    font-size:11px;
+    color:#777;
+    font-style:italic;
+    line-height:1.4;
+}
