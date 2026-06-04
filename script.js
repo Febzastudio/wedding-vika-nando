@@ -31,12 +31,14 @@ if (guest && guestNameContainer) {
     const namaTamu = decodeURIComponent(guest);
 
     guestNameContainer.innerHTML =
-'<div class="guest-label">' +
-'Kepada Yth.<br>' +
-'Bapak/Ibu/Saudara/i<br><br>' +
-'<strong>' + namaTamu + '</strong><br>' +
-'<small class="guest-note">Mohon maaf apabila terdapat kesalahan penulisan nama, gelar maupun alamat</small>' +
-'</div>';
+    '<div class="guest-label">' +
+    'Kepada Yth.<br>' +
+    'Bapak/Ibu/Saudara/i<br><br>' +
+    '<strong>' + namaTamu + '</strong><br>' +
+    '<small class="guest-note">*Mohon maaf apabila terdapat kesalahan penulisan nama, gelar maupun alamat.</small>' +
+    '</div>';
+
+}
 
 // ==========================================================================
 // HITUNG MUNDUR (COUNTDOWN) - ANTI MINUS
