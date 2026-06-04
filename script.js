@@ -1,253 +1,191 @@
+// ==========================================================================
+// BUKA UNDANGAN & KONTROL MUSIK
+// ==========================================================================
+function openInvitation() {
+    const cover = document.getElementById("cover");
+    const content = document.getElementById("content");
+    const music = document.getElementById("bgMusic");
 
-// ======================
-// BUKA UNDANGAN
-// ======================
+    if (cover) cover.style.display = "none";
+    if (content) content.style.display = "block";
 
-function openInvitation(){
-
-document.getElementById("cover").style.display="none";
-document.getElementById("content").style.display="block";
-
-const music=document.getElementById("bgMusic");
-
-music.play().catch(()=>{
-console.log("Autoplay diblokir browser");
-});
-
+    if (music) {
+        music.play().catch((error) => {
+            console.log("Autoplay diblokir oleh kebijakan keamanan browser:", error);
+        });
+    }
 }
 
-window.openInvitation=openInvitation;
+// Mengekspos fungsi ke cakupan global karena menggunakan type="module" di HTML
+window.openInvitation = openInvitation;
 
+// ==========================================================================
+// DETEKSI NAMA TAMU OTOMATIS (?to=Nama+Tamu)
+// ==========================================================================
+const params = new URLSearchParams(window.location.search);
+const guest = params.get("to");
+const guestNameContainer = document.getElementById("guestName");
 
-// ======================
-// NAMA TAMU OTOMATIS
-// contoh:
-// ?to=Bapak%20Ahmad
-// ======================
-
-const params=new URLSearchParams(window.location.search);
-
-const guest=params.get("to");
-
-if(guest){
-
-document.getElementById("guestName").innerHTML=
-"Kepada Yth.<br><strong>"+guest+"</strong>";
-
+if (guest && guestNameContainer) {
+    // Menggunakan textContent untuk nama tamu agar aman dari karakter aneh/HTML script
+    guestNameContainer.innerHTML = "Kepada Yth.<br><strong>" + encodeURIComponent(guest).replace(/%20/g, ' ') + "</strong>";
 }
 
+// ==========================================================================
+// HITUNG MUNDUR (COUNTDOWN) - ANTI MINUS
+// ==========================================================================
+const targetDate = new Date("June 11, 2026 14:00:00").getTime();
 
-// ======================
-// COUNTDOWN
-// ======================
+const countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-const targetDate=
-new Date("June 11, 2026 14:00:00").getTime();
+    // Proteksi: Jika waktu sudah terlewat, hentikan hitungan di angka 0
+    if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("days").innerHTML = "0";
+        document.getElementById("hours").innerHTML = "0";
+        document.getElementById("minutes").innerHTML = "0";
+        document.getElementById("seconds").innerHTML = "0";
+        return;
+    }
 
-setInterval(()=>{
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-const now=new Date().getTime();
+    // Update elemen DOM jika tersedia
+    if (document.getElementById("days")) document.getElementById("days").innerHTML = days;
+    if (document.getElementById("hours")) document.getElementById("hours").innerHTML = hours;
+    if (document.getElementById("minutes")) document.getElementById("minutes").innerHTML = minutes;
+    if (document.getElementById("seconds")) document.getElementById("seconds").innerHTML = seconds;
+}, 1000);
 
-const distance=targetDate-now;
+// ==========================================================================
+// INTEGRASI DATA BASE (FIREBASE CONFIG)
+// ==========================================================================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { 
+    getFirestore, collection, addDoc, getDocs, query, orderBy 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const days=Math.floor(
-distance/(1000*60*60*24)
-);
-
-const hours=Math.floor(
-(distance%(1000*60*60*24))
-/
-(1000*60*60)
-);
-
-const minutes=Math.floor(
-(distance%(1000*60*60))
-/
-(1000*60)
-);
-
-const seconds=Math.floor(
-(distance%(1000*60))
-/
-1000
-);
-
-document.getElementById("days").innerHTML=days;
-document.getElementById("hours").innerHTML=hours;
-document.getElementById("minutes").innerHTML=minutes;
-document.getElementById("seconds").innerHTML=seconds;
-
-},1000);
-
-
-// ======================
-// FIREBASE
-// ======================
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-addDoc,
-getDocs,
-query,
-orderBy
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-// GANTI DENGAN CONFIG ANDA
-
+// SILAKAN MASUKKAN KREDENSI FIREBASE ANDA DI SINI
 const firebaseConfig = {
-
-apiKey: "ISI_APIKEY",
-
-authDomain: "ISI_AUTHDOMAIN",
-
-projectId: "ISI_PROJECTID",
-
-storageBucket: "ISI_STORAGE",
-
-messagingSenderId: "ISI_SENDERID",
-
-appId: "ISI_APPID"
-
+    apiKey: "ISI_APIKEY",
+    authDomain: "ISI_AUTHDOMAIN",
+    projectId: "ISI_PROJECTID",
+    storageBucket: "ISI_STORAGE",
+    messagingSenderId: "ISI_SENDERID",
+    appId: "ISI_APPID"
 };
 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// ======================
+// ==========================================================================
+// FORM RSVP (KONFIRMASI KEHADIRAN)
+// ==========================================================================
+const rsvpForm = document.getElementById("rsvpForm");
 
-const app=initializeApp(firebaseConfig);
+if (rsvpForm) {
+    rsvpForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const nama = document.getElementById("rsvpNama").value;
+        const status = document.getElementById("rsvpStatus").value;
+        const messageContainer = document.getElementById("rsvpMessage");
 
-const db=getFirestore(app);
+        try {
+            await addDoc(collection(db, "rsvp"), {
+                nama: nama,
+                status: status,
+                tanggal: new Date()
+            });
 
-
-// ======================
-// RSVP
-// ======================
-
-const rsvpForm=
-document.getElementById("rsvpForm");
-
-if(rsvpForm){
-
-rsvpForm.addEventListener(
-"submit",
-async(e)=>{
-
-e.preventDefault();
-
-const nama=
-document.getElementById("rsvpNama").value;
-
-const status=
-document.getElementById("rsvpStatus").value;
-
-await addDoc(
-collection(db,"rsvp"),
-{
-
-nama:nama,
-status:status,
-tanggal:new Date()
-
-}
-);
-
-document.getElementById(
-"rsvpMessage"
-).innerHTML=
-"Terima kasih atas konfirmasi Anda.";
-
-rsvpForm.reset();
-
-}
-);
-
+            if (messageContainer) {
+                messageContainer.innerHTML = "<p style='color: green; margin-top: 10px;'>Terima kasih atas konfirmasi Anda.</p>";
+            }
+            rsvpForm.reset();
+        } catch (error) {
+            console.error("Gagal mengirim RSVP:", error);
+            if (messageContainer) {
+                messageContainer.innerHTML = "<p style='color: red; margin-top: 10px;'>Gagal mengirim. Coba lagi nanti.</p>";
+            }
+        }
+    });
 }
 
+// ==========================================================================
+// FORM UCAPAN & DOA (Buku Tamu)
+// ==========================================================================
+const wishForm = document.getElementById("wishForm");
 
-// ======================
-// UCAPAN
-// ======================
+if (wishForm) {
+    wishForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-const wishForm=
-document.getElementById("wishForm");
+        const nama = document.getElementById("wishName").value;
+        const pesan = document.getElementById("wishMessage").value;
 
-if(wishForm){
+        try {
+            await addDoc(collection(db, "ucapan"), {
+                nama: nama,
+                pesan: pesan,
+                tanggal: new Date()
+            });
 
-wishForm.addEventListener(
-"submit",
-async(e)=>{
-
-e.preventDefault();
-
-const nama=
-document.getElementById("wishName").value;
-
-const pesan=
-document.getElementById("wishMessage").value;
-
-await addDoc(
-collection(db,"ucapan"),
-{
-
-nama:nama,
-pesan:pesan,
-tanggal:new Date()
-
-}
-);
-
-wishForm.reset();
-
-loadUcapan();
-
-}
-);
-
+            wishForm.reset();
+            loadUcapan(); // Memuat ulang daftar ucapan terbaru
+        } catch (error) {
+            console.error("Gagal mengirim ucapan:", error);
+        }
+    });
 }
 
+// ==========================================================================
+// MEMUAT DAFTAR UCAPAN (LOAD DATA) - AMAN DARI XSS
+// ==========================================================================
+async function loadUcapan() {
+    const wishList = document.getElementById("wishList");
+    if (!wishList) return;
 
-// ======================
-// LOAD UCAPAN
-// ======================
+    wishList.innerHTML = "<p style='text-align: center; color: #888;'>Memuat ucapan...</p>";
 
-async function loadUcapan(){
+    try {
+        const q = query(collection(db, "ucapan"), orderBy("tanggal", "desc"));
+        const snapshot = await getDocs(q);
+        
+        wishList.innerHTML = ""; // Bersihkan teks loading
 
-const wishList=
-document.getElementById("wishList");
+        snapshot.forEach((doc) => {
+            const data = doc.data();
 
-wishList.innerHTML="";
+            // AMAN: Menggunakan pendekatan DOM Node untuk mencegah serangan XSS (Injeksi HTML/Script jahat)
+            const itemDiv = document.createElement("div");
+            itemDiv.classList.add("ucapan-item");
 
-const q=query(
-collection(db,"ucapan"),
-orderBy("tanggal","desc")
-);
+            const senderName = document.createElement("strong");
+            senderName.textContent = data.nama;
 
-const snapshot=
-await getDocs(q);
+            const messageText = document.createElement("p");
+            messageText.textContent = data.pesan;
+            messageText.style.marginTop = "5px";
 
-snapshot.forEach((doc)=>{
+            itemDiv.appendChild(senderName);
+            itemDiv.appendChild(messageText);
+            wishList.appendChild(itemDiv);
+        });
+        
+        if (snapshot.empty) {
+            wishList.innerHTML = "<p style='text-align: center; color: #888; font-style: italic;'>Belum ada ucapan.</p>";
+        }
 
-const data=doc.data();
-
-wishList.innerHTML+=`
-
-<div class="ucapan-item">
-
-<strong>${data.nama}</strong>
-
-<p>${data.pesan}</p>
-
-</div>
-
-`;
-
-});
-
+    } catch (error) {
+        console.error("Gagal memuat daftar ucapan:", error);
+        wishList.innerHTML = "<p style='text-align: center; color: red;'>Gagal memuat ucapan.</p>";
+    }
 }
 
+// Panggil fungsi pemuat ucapan saat halaman pertama kali terbuka
 loadUcapan();
