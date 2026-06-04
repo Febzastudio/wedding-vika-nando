@@ -1,294 +1,337 @@
-
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body{
-font-family:'Poppins',sans-serif;
-background:#fdf7f7;
-color:#4b1e2f;
-overflow-x:hidden;
+    font-family: 'Poppins', sans-serif;
+    background: #fdf7f7;
+    color: #4b1e2f;
+    overflow-x: hidden;
 }
 
-/* COVER */
-
+/* ==========================================================================
+   COVER SECTION
+   ========================================================================== */
 .cover{
-height:100vh;
-background:
-linear-gradient(rgba(70,0,20,.55),
-rgba(70,0,20,.55)),
-url('images/foto2.jpg.jpg');
-background-size:cover;
-background-position:center;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:20px;
+    height: 100vh;
+    background: linear-gradient(rgba(70, 0, 20, .55), rgba(70, 0, 20, .55)), url('images/foto2.jpg.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
 }
 
 .cover-overlay{
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(10px);
-padding:30px;
-border-radius:25px;
-width:100%;
-max-width:420px;
-color:#fff;
+    background: rgba(255, 255, 255, .12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 420px;
+    color: #fff;
 }
 
 .monogram{
-font-family:'Great Vibes',cursive;
-font-size:80px;
-margin-bottom:15px;
-color:#fff;
+    font-family: 'Great Vibes', cursive;
+    font-size: 80px;
+    margin-bottom: 15px;
+    color: #fff;
 }
 
 .cover h4{
-font-size:20px;
-margin-bottom:10px;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .cover h1{
-font-family:'Great Vibes',cursive;
-font-size:65px;
-font-weight:normal;
-margin-bottom:15px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 65px;
+    font-weight: normal;
+    margin-bottom: 15px;
 }
 
 .cover p{
-margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 .guest-name{
-background:#fff;
-color:#6b0f2a;
-padding:10px;
-border-radius:12px;
-margin-bottom:20px;
-font-weight:600;
+    background: #fff;
+    color: #6b0f2a;
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .open-btn{
-border:none;
-padding:15px 35px;
-border-radius:50px;
-background:#8b1538;
-color:#fff;
-font-size:16px;
-cursor:pointer;
+    border: none;
+    padding: 15px 35px;
+    border-radius: 50px;
+    background: #8b1538;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-/* CONTENT */
-
+/* ==========================================================================
+   MAIN CONTENT & CARDS
+   ========================================================================== */
 #content{
-display:none;
+    display: none;
 }
 
 .hero{
-text-align:center;
-padding:40px 20px;
+    text-align: center;
+    padding: 40px 20px;
 }
 
 .hero-img{
-width:220px;
-height:220px;
-border-radius:50%;
-object-fit:cover;
-border:8px solid #8b1538;
-margin-bottom:20px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 8px solid #8b1538;
+    margin-bottom: 20px;
 }
 
 .hero h1{
-font-family:'Great Vibes',cursive;
-font-size:60px;
-color:#8b1538;
+    font-family: 'Great Vibes', cursive;
+    font-size: 60px;
+    color: #8b1538;
 }
 
 .hero h2{
-margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 .card{
-background:white;
-margin:20px;
-padding:30px;
-border-radius:25px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-text-align:center;
+    background: white;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+    text-align: center;
+    max-width: 500px; /* Menjaga estetika layout kartu di layar lebar */
 }
 
 .card h2{
-color:#8b1538;
-margin-bottom:20px;
+    color: #8b1538;
+    margin-bottom: 20px;
 }
 
 .card h3{
-margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 .couple-photo{
-width:100%;
-max-width:300px;
-border-radius:20px;
-margin-bottom:20px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .love-icon{
-font-size:40px;
-color:#8b1538;
-margin:25px 0;
+    font-size: 40px;
+    color: #8b1538;
+    margin: 25px 0;
 }
 
-/* COUNTDOWN */
+/* ==========================================================================
+   QURAN SECTION STYLING (BAGIAN BARU)
+   ========================================================================== */
+.quran-section {
+    background: #fff;
+}
 
+.quran-section .arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: 26px;
+    line-height: 2.2;
+    margin-bottom: 15px;
+    direction: rtl;
+    color: #4b1e2f; /* Mengikuti warna utama tema Anda */
+}
+
+.quran-section .translation-text {
+    font-size: 14px;
+    line-height: 1.6;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.quran-section .verse-reference {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #8b1538; /* Burgundy aksen */
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   COUNTDOWN BLOCK
+   ========================================================================== */
 #countdown{
-display:flex;
-justify-content:center;
-gap:10px;
-flex-wrap:wrap;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 #countdown div{
-background:#8b1538;
-color:white;
-padding:20px;
-border-radius:15px;
-min-width:80px;
+    background: #8b1538;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    min-width: 80px;
 }
 
 #countdown span{
-display:block;
-font-size:28px;
-font-weight:bold;
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 #countdown small{
-font-size:12px;
+    font-size: 12px;
 }
 
-/* BUTTON */
-
+/* ==========================================================================
+   INTERACTION ELEMENTS (BUTTONS & FORMS)
+   ========================================================================== */
 .btn,
 button{
-background:#8b1538;
-color:white;
-border:none;
-padding:14px 25px;
-border-radius:30px;
-cursor:pointer;
-text-decoration:none;
-display:inline-block;
-margin-top:10px;
+    background: #8b1538;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .btn:hover,
 button:hover{
-opacity:.9;
+    opacity: .9;
+    transform: translateY(-1px);
 }
-
-/* FORM */
 
 input,
 textarea,
 select{
-width:100%;
-padding:15px;
-margin:10px 0;
-border:1px solid #ddd;
-border-radius:12px;
-font-family:'Poppins',sans-serif;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-family: 'Poppins', sans-serif;
+    color: #4b1e2f;
 }
 
 textarea{
-height:120px;
-resize:none;
+    height: 120px;
+    resize: none;
 }
 
-/* GALLERY */
-
+/* ==========================================================================
+   GALLERY & CONTENT LISTS
+   ========================================================================== */
 .gallery{
-display:grid;
-grid-template-columns:1fr;
-gap:15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
 }
 
 .gallery img{
-width:100%;
-border-radius:20px;
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
 }
 
-/* UCAPAN */
-
 #wishList{
-margin-top:20px;
-text-align:left;
+    margin-top: 20px;
+    text-align: left;
 }
 
 .ucapan-item{
-background:#fff5f7;
-padding:15px;
-border-radius:15px;
-margin-bottom:10px;
+    background: #fff5f7;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 10px;
 }
-
-/* FOTO PENUTUP */
 
 .closing-photo{
-width:100%;
-max-width:300px;
-border-radius:20px;
-margin-bottom:20px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
-/* FLOATING MENU */
-
+/* ==========================================================================
+   FLOATING NAVIGATION MENU
+   ========================================================================== */
 .floating-menu{
-position:fixed;
-bottom:20px;
-right:20px;
-display:flex;
-flex-direction:column;
-gap:10px;
-z-index:999;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
 }
 
 .floating-menu a{
-width:55px;
-height:55px;
-background:#8b1538;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-text-decoration:none;
-font-size:22px;
-box-shadow:0 5px 15px rgba(0,0,0,.2);
+    width: 55px;
+    height: 55px;
+    background: #8b1538;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 22px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
+    transition: background 0.3s ease;
 }
 
-/* MOBILE */
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media(max-width: 768px){
+    .cover h1{
+        font-size: 50px;
+    }
 
-@media(max-width:768px){
+    .monogram{
+        font-size: 65px;
+    }
 
-.cover h1{
-font-size:50px;
-}
+    .hero h1{
+        font-size: 45px;
+    }
 
-.monogram{
-font-size:65px;
-}
-
-.hero h1{
-font-size:45px;
-}
-
-.card{
-margin:15px;
-padding:20px;
-}
-
+    .card{
+        margin: 15px;
+        padding: 20px;
+    }
+    
+    .quran-section .arabic-text {
+        font-size: 22px; /* Ukuran tulisan Arab sedikit mengecil di layar HP agar pas */
+        line-height: 2.0;
+    }
 }
