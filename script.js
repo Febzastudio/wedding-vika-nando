@@ -72,12 +72,12 @@ import {
 
 // SILAKAN MASUKKAN KREDENSI FIREBASE ANDA DI SINI
 const firebaseConfig = {
-    apiKey: "ISI_APIKEY",
-    authDomain: "ISI_AUTHDOMAIN",
-    projectId: "ISI_PROJECTID",
-    storageBucket: "ISI_STORAGE",
-    messagingSenderId: "ISI_SENDERID",
-    appId: "ISI_APPID"
+    apiKey: "AIzaSyAVVlfywkGqQOowZ06U0t1GQubnh7Wt2Q4",
+    authDomain: "febzastudio.firebaseapp.com",
+    projectId: "febzastudio",
+    storageBucket: "febzastudio.firebasestorage.app",
+    messagingSenderId: "963884292211",
+    appId: "1:963884292211:web:68d3068ea4b1ebf9e5f206"
 };
 
 const app = initializeApp(firebaseConfig);
