@@ -35,7 +35,7 @@ if (guest && guestNameContainer) {
     'Kepada Yth.<br>' +
     'Bapak/Ibu/Saudara/i<br><br>' +
     '<strong>' + namaTamu + '</strong><br>' +
-    '<small class="guest-note">*Mohon maaf apabila terdapat kesalahan penulisan nama, gelar maupun alamat.</small>' +
+    '<small class="guest-note">*Mohon maaf apabila terdapat kesalahan penulisan nama atau gelar.</small>' +
     '</div>';
 
 }
