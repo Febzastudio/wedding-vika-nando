@@ -27,8 +27,15 @@ const guest = params.get("to");
 const guestNameContainer = document.getElementById("guestName");
 
 if (guest && guestNameContainer) {
-    // Menggunakan textContent untuk nama tamu agar aman dari karakter aneh/HTML script
-    guestNameContainer.innerHTML = "Kepada Yth.<br><strong>" + encodeURIComponent(guest).replace(/%20/g, ' ') + "</strong>";
+
+    const namaTamu = decodeURIComponent(guest);
+
+    guestNameContainer.innerHTML =
+    '<div class="guest-label">' +
+    'Kepada Yth.<br>' +
+    'Bapak/Ibu/Saudara/i<br><br>' +
+    '<strong>' + namaTamu + '</strong>' +
+    '</div>';
 }
 
 // ==========================================================================
